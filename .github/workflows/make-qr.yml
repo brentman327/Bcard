@@ -1,0 +1,31 @@
+name: Generate QR Code
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "index.html"
+
+permissions:
+  contents: write
+
+jobs:
+  build-qr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate QR code PNG
+        uses: snow-actions/qrcode@v2.0.0
+        with:
+          text: "https://brentman327.github.io/Bcard/"
+          path: "qr.png"
+
+      - name: Commit qr.png to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qr.png
+          git commit -m "Add QR code for Bcard" || exit 0
+          git push
