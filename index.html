@@ -8,37 +8,103 @@
     body {
       margin: 0;
       padding: 20px;
-      background: #111;
-      color: #fff;
+      background: #111111;
+      color: #ffffff;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       min-height: 100vh;
       box-sizing: border-box;
-      gap: 16px;
+    }
+    .card-box {
+      width: 100%;
+      max-width: 460px;
+      background: #1c1c1c;
+      border-radius: 10px;
+      padding: 18px;
+      box-sizing: border-box;
     }
     img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
       display: block;
       border-radius: 8px;
+      margin-bottom: 16px;
     }
-    .download-btn {
-      display: inline-block;
-      padding: 12px 24px;
+    h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+    }
+    .role {
+      margin: 0 0 14px;
+      color: #cccccc;
+      font-size: 15px;
+    }
+    .info {
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .info a {
+      color: #90caf9;
+      text-decoration: none;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+      padding: 12px 16px;
       background: #ffffff;
       color: #111111;
       text-decoration: none;
       font-weight: bold;
       border-radius: 6px;
-      font-size: 16px;
+      font-size: 15px;
     }
   </style>
 </head>
 <body>
-  <img src="Bcard.png" alt="Brent Redmond Business Card">
-  <a class="download-btn" href="Bcard.png" download="Bcard.png">Download Card</a>
+  <div class="card-box">
+    <img src="Bcard.png" alt="Brent Redmond Business Card">
+    <h1>Brent Redmond</h1>
+    <p class="role">Assistant Store Manager — ABC Warehouse</p>
+    <ul class="info">
+      <li><strong>Address:</strong> 3165 Alpine Ave NW, Walker, MI 49544</li>
+      <li><strong>Cell:</strong> <a href="tel:+12485797116">(248) 579-7116</a></li>
+      <li><strong>Store:</strong> <a href="tel:+16167841470">(616) 784-1470</a></li>
+    </ul>
+    <div class="actions">
+      <a class="btn" href="Bcard.png" download="Bcard.png">Download Card</a>
+      <a class="btn" id="saveVcf" href="#">Save Contact</a>
+    </div>
+  </div>
+
+  <script>
+    const vcard = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      "N:Redmond;Brent;;;",
+      "FN:Brent Redmond",
+      "ORG:ABC Warehouse",
+      "TITLE:Assistant Store Manager",
+      "TEL;TYPE=CELL,VOICE:+12485797116",
+      "TEL;TYPE=WORK,VOICE:+16167841470",
+      "ADR;TYPE=WORK:;;3165 Alpine Ave NW;Walker;MI;49544;USA",
+      "END:VCARD"
+    ].join("\r\n");
+
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const link = document.getElementById("saveVcf");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Brent_Redmond.vcf";
+  </script>
 </body>
 </html>
