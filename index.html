@@ -5,11 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brent Redmond — ABC Warehouse</title>
   <style>
-    body { margin: 0; background: #111; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    img { max-width: 100%; height: auto; display: block; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+      gap: 16px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #ffffff;
+      color: #111111;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
   <img src="Bcard.png" alt="Brent Redmond Business Card">
+  <a class="download-btn" href="Bcard.png" download="Bcard.png">Download Card</a>
 </body>
 </html>
